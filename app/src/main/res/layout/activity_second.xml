@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SecondActivity">
-    <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:transitionName="@string/app_name"
+<layout>
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.example.sbotlevskyi.transition.User" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent"
+        tools:context=".SecondActivity">
+
+        <ImageView
+            android:id="@+id/image_main"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:foregroundGravity="center_horizontal"
+            android:src="@mipmap/ic_launcher"
+            android:transitionName="@string/app_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/text_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@{user.name, default=my_default}" />-->
+
+
+        <!--android:layoutAnimation="@anim/layout_animation_slide_right"-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/image_main">
+
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+</layout>
