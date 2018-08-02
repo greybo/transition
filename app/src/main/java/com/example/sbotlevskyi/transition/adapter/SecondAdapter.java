@@ -1,8 +1,6 @@
 package com.example.sbotlevskyi.transition.adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.util.ListUpdateCallback;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
 import com.example.sbotlevskyi.transition.R;
 import com.example.sbotlevskyi.transition.User;
-import com.example.sbotlevskyi.transition.utils.MyDiffCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +23,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
     private static final String TAG = "SecondAdapter";
     private ArrayList<User> users;
     private int lastPosition;
+    private int lastAnimatedPosition;
 
     public SecondAdapter(ArrayList<User> users) {
         this.users = users;
@@ -48,18 +46,6 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
         return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        super.onBindViewHolder(holder, position, payloads);
-        Log.i(TAG, "onBindViewHolder payloads: " + payloads);
-        if (!payloads.isEmpty()) {
-            User user = (User) payloads.get(0);
-            holder.bind(user, position);
-
-        }
-
     }
 
     @Override
@@ -88,6 +74,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
             char letterChar = user.getName().toUpperCase().toCharArray()[0];
             letter.setText(letterChar + "");
             nameUser.setText(user.getName());
+
 //            setAnimation(itemView, position);
 //            setScaleAnimation(itemView);
         }
