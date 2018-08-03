@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="user"
-            type="com.example.sbotlevskyi.transition.User" />
+            type="com.example.sbotlevskyi.transition.entity.User" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,51 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SecondActivity">
+        tools:context=".activity.SecondActivity">
 
-        <ImageView
-            android:id="@+id/image_main"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:foregroundGravity="center_horizontal"
-            android:src="@mipmap/ic_launcher"
-            android:transitionName="@string/app_name"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary">
-            <ImageView
-                android:id="@+id/ivLogo"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-        </android.support.v7.widget.Toolbar>
-
-
-        <!--android:layoutAnimation="@anim/layout_animation_from_bottom"-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:layout_below="@+id/image_main">
-        </android.support.v7.widget.RecyclerView>
-
-        <ImageButton
-            android:id="@+id/btnCreate"
-            android:layout_width="@dimen/btn_fab_size"
-            android:layout_height="@dimen/btn_fab_size"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/circle_latter"
-            android:elevation="15dp"
-            android:textSize="28sp" />
+        <include layout="@layout/second_end_layout"/>
     </RelativeLayout>
 </layout>

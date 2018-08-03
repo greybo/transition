@@ -1,12 +1,9 @@
-package com.example.sbotlevskyi.transition;
+package com.example.sbotlevskyi.transition.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.util.ListUpdateCallback;
@@ -24,8 +21,9 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
+import com.example.sbotlevskyi.transition.R;
+import com.example.sbotlevskyi.transition.entity.User;
 import com.example.sbotlevskyi.transition.adapter.SecondAdapter;
 import com.example.sbotlevskyi.transition.utils.MyDiffCallback;
 import com.example.sbotlevskyi.transition.utils.Utils;
@@ -68,22 +66,25 @@ public class SecondActivity extends AppCompatActivity {
         recyclerView.getItemAnimator().setAddDuration(1000);
         recyclerView.setLayoutManager(new LinearLayoutManager(SecondActivity.this));
         recyclerView.setAdapter(secondAdapter);
+        animateButtonFab(btnCreate,0, 1);
+        btnCreate.setOnClickListener(v -> animateButtonFab(btnCreate,0, 1));
 
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                secondAdapter = new SecondAdapter(initData());
-//                recyclerView = findViewById(R.id.recycler_view);
-//                recyclerView.setLayoutManager(new LinearLayoutManager(SecondActivity.this));
-//                recyclerView.setAdapter(secondAdapter);
-////                runLayoutInsertAnimation(recyclerView, 0, 0);
-//
-//                SlideInUpAnimator animator = new SlideInUpAnimator(new OvershootInterpolator(1f));
-//                recyclerView.setItemAnimator(animator);
-//            }
-//        }, 600);
-
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        animateButtonFab(btnCreate,1, 0);
+        animateButtonFab(toolbar,1, 0);
+//        overridePendingTransition(R.anim.slide_out_right,R.anim.slide_in_right);
+    }
+    private void animateButtonFab(View view,float from, float to) {
+        view.setScaleX(from);
+        view.setScaleY(from);
+        view.animate()
+                .setDuration(400)
+                .scaleX(to)
+                .scaleY(to)
+                .start();
     }
 
     public void addToList(ArrayList<User> list) {
@@ -181,13 +182,13 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        inboxMenuItem = menu.findItem(R.id.action_inbox);
-        inboxMenuItem.setActionView(R.layout.menu_item_view);
-        startIntroAnimation();
-//        menu.add("add");
-//        menu.add("change");
-//        menu.add("move");
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        inboxMenuItem = menu.findItem(R.id.action_inbox);
+//        inboxMenuItem.setActionView(R.layout.menu_item_view);
+//        startIntroAnimation();
+        menu.add("add");
+        menu.add("change");
+        menu.add("move");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -245,6 +246,7 @@ public class SecondActivity extends AppCompatActivity {
                 })
                 .start();
     }
+
     private void startContentAnimation() {
         rootView.animate()
                 .translationY(0)
@@ -253,6 +255,7 @@ public class SecondActivity extends AppCompatActivity {
                 .setDuration(300)
                 .start();
     }
+
     private ArrayList<User> initData() {
         return new ArrayList<User>() {{
             add(new User(1, "Sergey", 23));

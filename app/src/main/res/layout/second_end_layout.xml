@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/transition_name1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="@string/app_name"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageButton
+        android:id="@+id/btnCreate"
+        android:layout_width="@dimen/btn_fab_size"
+        android:layout_height="@dimen/btn_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circle_latter"
+        android:elevation="15dp"
+        android:textSize="28sp" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:scaleType="center"/>
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--android:layoutAnimation="@anim/layout_animation_from_bottom"-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/image_layout">
+    </android.support.v7.widget.RecyclerView>
+
+<FrameLayout
+    android:id="@+id/image_layout"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:foregroundGravity="center_horizontal"
+    android:src="@mipmap/ic_launcher"
+    app:layout_constraintTop_toTopOf="@+id/toolbar">
+    <ImageView
+        android:id="@+id/image_small"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher" />
+</FrameLayout>
+
+
+
+</RelativeLayout>

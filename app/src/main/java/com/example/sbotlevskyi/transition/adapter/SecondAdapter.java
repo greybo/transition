@@ -2,21 +2,19 @@ package com.example.sbotlevskyi.transition.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.example.sbotlevskyi.transition.R;
-import com.example.sbotlevskyi.transition.User;
+import com.example.sbotlevskyi.transition.entity.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder> {
 
@@ -70,14 +68,29 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
             nameUser = itemView.findViewById(R.id.tv_user_name);
         }
 
-        void bind(User user, int position) {
+        void bind(User user, final int position) {
             char letterChar = user.getName().toUpperCase().toCharArray()[0];
             letter.setText(letterChar + "");
             nameUser.setText(user.getName());
+            itemView.setScaleX(0);
 
-//            setAnimation(itemView, position);
+            itemView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startContentAnimation(itemView, position);
+                    itemView.setScaleX(1f);
+                }
+            }, 300);
+
 //            setScaleAnimation(itemView);
         }
+    }
+
+    private void startContentAnimation(View viewToAnimate, int position) {
+        TranslateAnimation anim = new TranslateAnimation(0, 0, 200, 0);
+//        ScaleAnimation anim = new ScaleAnimation(1.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setDuration(300);
+        viewToAnimate.startAnimation(anim);
     }
 
     private void setAnimation(View viewToAnimate, int position) {
@@ -86,7 +99,6 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
 //            Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), R.anim.layout_animation_slide_right);
             ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setDuration(300);
-
             viewToAnimate.startAnimation(anim);
             lastPosition = position;
         }

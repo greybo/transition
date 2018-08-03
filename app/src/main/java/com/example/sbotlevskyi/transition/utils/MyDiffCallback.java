@@ -1,11 +1,10 @@
 package com.example.sbotlevskyi.transition.utils;
 
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 import android.util.Log;
 
-import com.example.sbotlevskyi.transition.User;
+import com.example.sbotlevskyi.transition.entity.User;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.sbotlevskyi.transition;
+package com.example.sbotlevskyi.transition.entity;
 
 import java.util.Objects;
 
