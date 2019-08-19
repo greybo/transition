@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             View sharedView = transitionLayout;
             String transitionName = getString(R.string.app_name);
 
-            ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, sharedView, transitionName);
+            ActivityOptions transitionActivityOptions = ActivityOptions
+                    .makeSceneTransitionAnimation(MainActivity.this, sharedView, transitionName);
             startActivity(i, transitionActivityOptions.toBundle());
         });
 
